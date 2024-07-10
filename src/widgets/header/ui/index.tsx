@@ -3,17 +3,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
 
 export const Header = () => {
-  const context = useContext(AuthContext);
+  const { isAuth, setAuth } = useContext(AuthContext);
 
   function signOut() {
-    context?.setAuth();
+    setAuth();
   }
 
   return (
     <div>
       <Link to="/">logo</Link>
       {/* {search form} */}
-      {context?.isAuth ? (
+      {isAuth ? (
         <>
           <Link to="/favorites">Избранное</Link>
           <Link to="/history">Истории</Link>
