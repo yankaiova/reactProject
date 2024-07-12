@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Product } from "../model/types";
+import { Product } from "../../../shared/model/types";
 import {
   Card,
   CardContent,
@@ -8,7 +8,9 @@ import {
   CardMedia,
   Button,
 } from "@mui/material";
+
 type Props = { product: Product };
+
 export const ProductCard = ({ product }: Props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
