@@ -7,6 +7,7 @@ export interface Product {
   thumbnail: string;
   description: string;
   price: number;
+  rating: number;
 }
 export interface ProductFromApi {
   products: Product[];
