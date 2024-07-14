@@ -17,11 +17,11 @@ export const useFavorites = ({ user, product }: Props) => {
   );
 
   const addFavorite = useCallback(() => {
-    dispatch(addToFavorites({ product, user }));
+    dispatch(addToFavorites(product));
   }, [dispatch, user, product, favoriteProducts]);
 
   const removeFavorite = useCallback(() => {
-    dispatch(removeFromFavorites({ product, user }));
+    dispatch(removeFromFavorites(product));
   }, [dispatch, user, product, favoriteProducts]);
 
   return { isInFavorite, addFavorite, removeFavorite };

@@ -11,8 +11,8 @@ export const FavoiteList = () => {
       {favoriteProducts.map((item: Product) => (
         <FavoriteItem
           product={item}
-          key={item.id}
-          actions={<Like user={null} product={item} />}
+          key={item.id + "fav"}
+          actions={<Like product={item} />}
         />
       ))}
     </div>

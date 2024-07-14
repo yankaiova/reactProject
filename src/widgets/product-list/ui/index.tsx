@@ -15,7 +15,7 @@ export const ProductList = () => {
         <ProductItem
           product={item}
           key={item.id}
-          actions={<Like user={null} product={item} />}
+          actions={<Like product={item} />}
         />
       ))}
     </div>
