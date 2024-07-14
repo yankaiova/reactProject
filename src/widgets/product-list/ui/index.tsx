@@ -1,5 +1,7 @@
-import { Product, ProductCard } from "../../../entities/product";
+import { ProductItem } from "../../../entities/product";
 import { productApi } from "../../../entities/product/api/slice";
+import { Like } from "../../../features/toggle-favorite";
+import { Product } from "../../../shared/model/types";
 
 export const ProductList = () => {
   const { useGetProductsAllQuery } = productApi;
@@ -10,7 +12,11 @@ export const ProductList = () => {
   return (
     <div>
       {data.map((item: Product) => (
-        <ProductCard product={item} key={item.id} />
+        <ProductItem
+          product={item}
+          key={item.id}
+          actions={<Like product={item} />}
+        />
       ))}
     </div>
   );

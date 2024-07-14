@@ -1,3 +1,5 @@
+import { FavoiteList } from "../../../widgets/favorite-list/ui";
+
 export const FavoritesPage = () => {
-  return <div>Страница Избранное</div>;
+  return <FavoiteList />;
 };

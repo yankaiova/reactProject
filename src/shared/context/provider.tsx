@@ -5,12 +5,12 @@ type props = {
 };
 
 export const AuthProvider = ({ children }: props) => {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(true);
   const setAuth = () => {
     setIsAuth((prev) => !prev);
   };
   return (
-    <AuthContext.Provider value={{ isAuth, setAuth }}>
+    <AuthContext.Provider value={{ isAuth, setAuth, user: "yana" }}>
       {children}
     </AuthContext.Provider>
   );
