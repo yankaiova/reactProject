@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
+import { ProductInfo } from "../../../widgets/product-info";
+
 export const DetailPage = () => {
-  const { id } = useParams();
-  return <div>Детали единицы информации по {id}</div>;
+  return <ProductInfo />;
 };

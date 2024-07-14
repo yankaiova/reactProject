@@ -17,7 +17,10 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        children: [{ path: "/:id", element: <DetailPage /> }],
+      },
+      {
+        path: "/:id",
+        element: <DetailPage />,
       },
       //страница поиска, будет позже
       {
