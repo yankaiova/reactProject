@@ -14,8 +14,11 @@ export const productApi = createApi({
     getProductbyId: builder.query<Product, number>({
       query: (id) => `/products/${id}`,
     }),
-    getProductByName: builder.query<Product, string>({
+    getProductByName: builder.query<Product[], string>({
       query: (name) => `/products/search?q=${name}`,
+      transformResponse: (res: ProductFromApi): Product[] => {
+        return res.products;
+      },
     }),
   }),
 });

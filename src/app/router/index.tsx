@@ -7,6 +7,7 @@ import { SignInPage } from "../../pages/signin";
 import { SignUpPage } from "../../pages/signup";
 import { FavoritesPage } from "../../pages/favorites";
 import { PrivateRoute } from "./private";
+import { SearchPage } from "../../pages/search/ui";
 
 export const routes = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <FavoritesPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/search",
+        element: (
+          <PrivateRoute>
+            <SearchPage />
           </PrivateRoute>
         ),
       },
