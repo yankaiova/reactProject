@@ -17,7 +17,6 @@ export const LikeButton = ({ isLike, likeClick, removeLikeClick }: Props) => {
       likeClick();
     }
   }
-  console.log(isLike);
 
   return (
     <Box onClick={handleClick} style={{ cursor: "pointer" }}>
