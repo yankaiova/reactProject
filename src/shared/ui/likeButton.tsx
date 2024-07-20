@@ -1,6 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box } from "@mui/material";
+import PropTypes from "prop-types";
 
 type Props = {
   isLike: boolean;
@@ -16,9 +17,17 @@ export const LikeButton = ({ isLike, likeClick, removeLikeClick }: Props) => {
       likeClick();
     }
   }
+  console.log(isLike);
+
   return (
     <Box onClick={handleClick} style={{ cursor: "pointer" }}>
       {isLike ? <FavoriteIcon /> : <FavoriteBorderIcon />}
     </Box>
   );
+};
+
+LikeButton.propTypes = {
+  isLike: PropTypes.bool,
+  likeClick: PropTypes.func,
+  removeLikeClick: PropTypes.func,
 };
