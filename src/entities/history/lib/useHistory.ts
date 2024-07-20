@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import { addToHistory } from "../model/slice";
-import { getHistory } from "../model/selectors";
+import { addToHistory, clearHistory } from "../model/slice";
+import { getUserHistory } from "../model/selectors";
 
-type Props = { user: string | null };
-
-export const useHistory = ({ user }: Props) => {
+export const useHistory = (user: string | null) => {
   const dispatch = useDispatch();
-  const historyList = useSelector(getHistory);
+  const historyList = useSelector(getUserHistory);
 
   const addHistory = useCallback(
     (keyword: string) => {
@@ -16,5 +14,9 @@ export const useHistory = ({ user }: Props) => {
     [dispatch, user, historyList]
   );
 
-  return { historyList, addHistory };
+  const clearHistoryList = useCallback(() => {
+    dispatch(clearHistory());
+  }, [dispatch, user, historyList]);
+
+  return { historyList, addHistory, clearHistoryList };
 };

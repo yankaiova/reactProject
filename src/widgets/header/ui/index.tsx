@@ -24,7 +24,7 @@ export const Header = () => {
       {isAuth ? (
         <>
           <Link to="/favorites">Избранное</Link>
-          <Link to="/history">Истории</Link>
+          <Link to="/history">История</Link>
           <Link to="/" onClick={signOut}>
             Выйти
           </Link>

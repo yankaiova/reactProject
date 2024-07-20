@@ -8,7 +8,8 @@ import { useHistory } from "../../../entities/history/lib/useHistory";
 export const SearchForm = () => {
   const navigate = useNavigate();
   const { isAuth, user } = useContext(AuthContext);
-  const { addHistory } = useHistory({ user });
+  const { addHistory } = useHistory(user);
+
   const onSubmit = (nameData: { query: string }) => {
     if (!nameData.query.trim()) {
       return navigate("/");
@@ -21,7 +22,7 @@ export const SearchForm = () => {
 
   function handlePress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "enter") {
-      console.log("click");
+      //тут будет логика для поиска по нажтию на enter
     }
   }
 
