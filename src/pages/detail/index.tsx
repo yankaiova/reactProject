@@ -1,4 +1,4 @@
-import { ProductInfo } from "../../../widgets/product-info";
+import { ProductInfo } from "../../widgets/product-info";
 
 export const DetailPage = () => {
   return <ProductInfo />;

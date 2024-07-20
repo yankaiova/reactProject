@@ -1,10 +1,10 @@
-import { productApi } from "../../../entities/product/api/slice";
+import { productApi } from "../../entities/product/api/slice";
 import { useSearchParams } from "react-router-dom";
-import { Product } from "../../../shared/model/types";
-import { ProductItem } from "../../../entities/product";
-import { Like } from "../../../features/toggle-favorite";
+import { Product } from "../../shared/model/types";
+import { ProductItem } from "../../entities/product";
+import { Like } from "../../features/toggle-favorite";
 
-export const SearchPage = () => {
+const SearchPage = () => {
   const [params] = useSearchParams();
   const query = params.get("search");
 
@@ -26,3 +26,4 @@ export const SearchPage = () => {
     </div>
   );
 };
+export default SearchPage;

@@ -16,7 +16,6 @@ export const Header = () => {
         width: "100vw",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
       }}
     >
       <Link to="/">logo</Link>

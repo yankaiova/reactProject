@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { useHistory } from "../../../entities/history/lib/useHistory";
-import { AuthContext } from "../../../shared/context";
-import { ClearButton } from "../../../features/clear-history";
+import { useHistory } from "../../entities/history/lib/useHistory";
+import { AuthContext } from "../../shared/context";
+import { ClearButton } from "../../features/clear-history";
 
-export const HistoryPage = () => {
+const HistoryPage = () => {
   const { user } = useContext(AuthContext);
   const { historyList } = useHistory(user);
 
@@ -18,3 +18,4 @@ export const HistoryPage = () => {
     </div>
   );
 };
+export default HistoryPage;
