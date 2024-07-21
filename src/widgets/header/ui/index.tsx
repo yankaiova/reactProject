@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
+import { SearchForm } from "../../../features/search/ui";
 
 export const Header = () => {
   const { isAuth, setAuth } = useContext(AuthContext);
@@ -10,13 +11,19 @@ export const Header = () => {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100vw",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Link to="/">logo</Link>
-      {/* {search form} */}
+      <SearchForm />
       {isAuth ? (
         <>
           <Link to="/favorites">Избранное</Link>
-          <Link to="/history">Истории</Link>
+          <Link to="/history">История</Link>
           <Link to="/" onClick={signOut}>
             Выйти
           </Link>

@@ -12,9 +12,7 @@ type Props = { product: Product; user: null | string };
 export const useFavorites = ({ user, product }: Props) => {
   const dispatch = useDispatch();
   const favoriteProducts = useSelector(getFavoriteProducts);
-  const isInFavorite = favoriteProducts.find(
-    (item: Product) => item === product
-  );
+  const isInFavorite = favoriteProducts.includes(product);
 
   const addFavorite = useCallback(() => {
     dispatch(addToFavorites(product));

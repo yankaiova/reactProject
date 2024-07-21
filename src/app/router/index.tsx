@@ -1,12 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../../widgets/layout/ui";
-import { HomePage } from "../../pages/main";
 import { DetailPage } from "../../pages/detail";
-import { HistoryPage } from "../../pages/history";
 import { SignInPage } from "../../pages/signin";
 import { SignUpPage } from "../../pages/signup";
-import { FavoritesPage } from "../../pages/favorites";
 import { PrivateRoute } from "./private";
+import { lazy } from "react";
+
+const HomePage = lazy(() => import("../../pages/main"));
+const FavoritesPage = lazy(() => import("../../pages/favorites"));
+const HistoryPage = lazy(() => import("../../pages/history"));
+const SearchPage = lazy(() => import("../../pages/search"));
 
 export const routes = createBrowserRouter([
   {
@@ -36,6 +39,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <FavoritesPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/search",
+        element: (
+          <PrivateRoute>
+            <SearchPage />
           </PrivateRoute>
         ),
       },
