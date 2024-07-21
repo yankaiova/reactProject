@@ -1,3 +1,5 @@
+import { Register } from "../../../features/register";
+
 export const SignUpPage = () => {
-  return <div>Страница Регистрации</div>;
+  return <Register />;
 };

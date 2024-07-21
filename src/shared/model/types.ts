@@ -14,3 +14,7 @@ export interface ProductFromApi {
   total: number;
   limit: number;
 }
+export type User = {
+  email: string;
+  password: string;
+};
