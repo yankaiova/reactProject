@@ -1,22 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
 import { getUserByEmail, setUser } from "../lib/utils";
+import { Box } from "@mui/material";
+import { InputForm } from "../../../shared/ui/inputForm";
+import { schema } from "../../../shared/config/schema";
+import { type User } from "../../../shared/model/types";
 
 export const Login = () => {
   const { setAuth } = useContext(AuthContext);
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    let user = getUserByEmail(email);
+  const handleSubmit = (data: User) => {
+    const user = getUserByEmail(data.email);
     if (user) {
       const passwordUser = JSON.parse(user).password;
-      if (passwordUser === password) {
+      if (passwordUser === data.password) {
         alert("Вход выполнен");
-        setUser(email);
+        setUser(data.email);
         setAuth();
         navigate("/");
       }
@@ -26,29 +28,12 @@ export const Login = () => {
   };
 
   return (
-    <form>
+    <Box>
       <h2>Вход</h2>
-      <input
-        name="email"
-        type="email"
-        placeholder="Введите Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <input
-        name="password"
-        type="password"
-        placeholder="Введите пароль"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <button type="submit" onClick={handleSubmit}>
-        Войти
-      </button>
-
-      <span>
+      <InputForm schema={schema} onSubmit={handleSubmit} eventSubmit="Войти" />
+      <div>
         Еще не зарегистрированы? <Link to={"/signup"}>Зарегистрироваться</Link>
-      </span>
-    </form>
+      </div>
+    </Box>
   );
 };

@@ -1,35 +1,30 @@
-import { useState } from "react";
-import { registerUser } from "../lib/utils";
+import { schema } from "../../../shared/config/schema";
+import { checkRegister, registerUser } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
+import { InputForm } from "../../../shared/ui/inputForm";
+import { User } from "../../../shared/model/types";
 
 export const Register = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = () => {
-    registerUser({ email, password });
-    navigate("/signin");
+  const handleSubmit = (data: User) => {
+    if (checkRegister(data)) {
+      alert("Вы уже зарегитсрированы");
+    } else {
+      registerUser(data);
+      navigate("/signin");
+    }
   };
 
   return (
-    <form>
+    <Box>
       <h2>Регистрация</h2>
-      <input
-        name="email"
-        type="email"
-        placeholder="Введите Email"
-        onChange={(e) => setEmail(e.target.value)}
+      <InputForm
+        schema={schema}
+        onSubmit={handleSubmit}
+        eventSubmit="Зарегистрироваться"
       />
-      <input
-        name="password"
-        type="password"
-        placeholder="Введите пароль"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit" onClick={handleSubmit}>
-        Зарегистрироваться
-      </button>
-    </form>
+    </Box>
   );
 };

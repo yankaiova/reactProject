@@ -5,7 +5,7 @@ type props = {
 };
 
 export const AuthProvider = ({ children }: props) => {
-  const [isAuth, setIsAuth] = useState<boolean>(true);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   const setAuth = () => {
     setIsAuth((prev) => !prev);
   };
