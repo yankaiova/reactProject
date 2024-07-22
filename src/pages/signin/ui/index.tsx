@@ -1,3 +1,4 @@
+import { Login } from "../../../features/login";
 export const SignInPage = () => {
-  return <div>Страница Входа</div>;
+  return <Login />;
 };
