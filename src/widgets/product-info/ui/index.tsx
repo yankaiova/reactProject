@@ -19,7 +19,7 @@ export const ProductInfo = () => {
   if (!data) return <div>Пусто</div>;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} key={id + "-info"}>
       <CardMedia sx={{ height: 140 }} image={data.thumbnail} />
       <CardContent>
         <Rating name="read-only" value={data.rating} readOnly />
@@ -29,11 +29,11 @@ export const ProductInfo = () => {
         <Typography>{data.description}</Typography>
         <Typography>{data.brand}</Typography>
         {data.tags.map((tag) => (
-          <Typography>#{tag} </Typography>
+          <Typography key={tag}>#{tag} </Typography>
         ))}
       </CardContent>
       <CardActions>
-        <Like product={data} />
+        <Like id={Number(id)} />
       </CardActions>
     </Card>
   );

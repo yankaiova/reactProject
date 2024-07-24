@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Product } from "../../../shared/model/types";
 
 export interface FavoriteState {
-  products: Product[];
+  ids: number[];
   user: string | null;
 }
 
 const initialState: FavoriteState = {
-  products: [],
+  ids: [],
   user: null,
 };
 
@@ -16,16 +15,13 @@ export const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
-      state.products?.push(action.payload);
+      state.ids?.push(action.payload);
     },
     removeFromFavorites: (state, action) => {
-      state.products = state.products?.filter(
-        (item) => item.id !== action.payload.id
-      );
+      state.ids = state.ids?.filter((item) => item !== action.payload);
     },
     setFavorites: (state, action) => {
-      state.products = action.payload.products;
-      state.user = action.payload.user;
+      state.ids = action.payload;
     },
   },
 });

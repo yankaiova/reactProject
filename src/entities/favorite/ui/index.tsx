@@ -1,16 +1,25 @@
 import { Typography } from "@mui/material";
-import { Product } from "../../../shared/model/types";
+import { productApi } from "../../product/api/slice";
 import { ProductCard } from "../../../shared/ui/cardProduct";
+
 type Props = {
-  product: Product;
+  id: number;
   actions: JSX.Element;
 };
 
-export const FavoriteItem = ({ product, actions }: Props) => {
+export const FavoriteItem = ({ id, actions }: Props) => {
+  const { useGetProductbyIdQuery } = productApi;
+  const { data, isLoading } = useGetProductbyIdQuery(id);
+  if (isLoading) return <div>Loading...</div>;
+
   return (
-    <ProductCard id={product.id} mediaUrl={product.thumbnail} actions={actions}>
-      <Typography>{product.title}</Typography>
-      <Typography>{product.price}</Typography>
-    </ProductCard>
+    <>
+      {data && (
+        <ProductCard id={id} mediaUrl={data.thumbnail} actions={actions}>
+          <Typography>{data.title}</Typography>
+          <Typography>{data.price}</Typography>
+        </ProductCard>
+      )}
+    </>
   );
 };
