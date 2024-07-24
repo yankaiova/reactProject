@@ -3,6 +3,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { productApi } from "../../entities/product/api/slice";
 import favoriteReducer from "../../entities/favorite/model/slice";
 import historyReducer from "../../entities/history/model/slice";
+import { listenerMiddlewareHistory } from "../../entities/history/model/middleware";
 //может позже перенесу стор в другую папку
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,8 @@ export const store = configureStore({
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(productApi.middleware),
+    getDefaultMiddleware()
+      .concat(productApi.middleware)
+      .prepend(listenerMiddlewareHistory.middleware),
 });
 setupListeners(store.dispatch);
