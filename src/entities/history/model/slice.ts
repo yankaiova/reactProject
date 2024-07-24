@@ -15,6 +15,7 @@ export const historySlice = createSlice({
   initialState,
   reducers: {
     addToHistory: (state, action) => {
+      state.history = state.history.filter((item) => item !== action.payload);
       state.history?.push(action.payload);
     },
     setHistory: (state, action) => {

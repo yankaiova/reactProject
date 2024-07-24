@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import { getHistoryinLocal } from "../../entities/history/lib/utils";
 import { useDispatch } from "react-redux";
 import { setHistory } from "../../entities/history/model/slice";
+import { Link } from "react-router-dom";
 
 export const HistoryList = () => {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,9 @@ export const HistoryList = () => {
           <div key={item + index}>
             <span>{item}</span>
             <Button onClick={() => removeItemHistory(item)}>Удалить</Button>
+            <Link to={`/search?search=${item}`}>
+              <Button size="small">Подробнее</Button>
+            </Link>
           </div>
         ))}
       </div>
