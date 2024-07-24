@@ -1,11 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import { addToHistory, clearHistory, removeFromHistory } from "../model/slice";
-import { getUserHistory } from "../model/selectors";
+import {
+  addToHistory,
+  clearHistory,
+  removeFromHistory,
+  setCurrentSearch,
+} from "../model/slice";
+import { getUserHistory, getUserSearch } from "../model/selectors";
 
 export const useHistory = (user: string | null) => {
   const dispatch = useDispatch();
   const historyList = useSelector(getUserHistory);
+  const currentSearchValue = useSelector(getUserSearch);
+
+  const setCurrentSearchValue = useCallback(
+    (keyword: string) => {
+      dispatch(setCurrentSearch(keyword));
+    },
+    [dispatch, user, historyList, currentSearchValue]
+  );
 
   const addHistory = useCallback(
     (keyword: string) => {
@@ -30,5 +43,7 @@ export const useHistory = (user: string | null) => {
     addHistory,
     clearHistoryList,
     removeItemHistory,
+    setCurrentSearchValue,
+    currentSearchValue,
   };
 };
