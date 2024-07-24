@@ -1,3 +1,4 @@
+import { getDataLocalStorage } from "../lib/utils";
 import { AuthContext } from "./context";
 import { useState } from "react";
 type props = {
@@ -5,12 +6,15 @@ type props = {
 };
 
 export const AuthProvider = ({ children }: props) => {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const localUser = getDataLocalStorage("user");
+
+  const [isAuth, setIsAuth] = useState<boolean>(Boolean(localUser));
   const setAuth = () => {
     setIsAuth((prev) => !prev);
   };
+
   return (
-    <AuthContext.Provider value={{ isAuth, setAuth, user: "yana" }}>
+    <AuthContext.Provider value={{ isAuth, setAuth, user: localUser }}>
       {children}
     </AuthContext.Provider>
   );

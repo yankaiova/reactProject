@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../shared/context";
 import { useHistory } from "../../../entities/history/lib/useHistory";
 import { useState } from "react";
 import { Button, TextField } from "@mui/material";
+import { getCurrentSearch, setCurrentSearch } from "../lib/utils";
 
 export const SearchForm = () => {
   const navigate = useNavigate();
-
-  const [query, setQuery] = useState<string>("");
   const { isAuth, user } = useContext(AuthContext);
+  const [query, setQuery] = useState<string>("");
+
+  const defaultValueSearch = getCurrentSearch(user) ?? "";
   const { addHistory } = useHistory(user);
 
   const onSubmit = (
@@ -33,11 +35,16 @@ export const SearchForm = () => {
     }
   }
 
+  useEffect(() => {
+    setCurrentSearch(user, query);
+  }, [query]);
+
   return (
     <form style={{ display: "flex", alignItems: "center" }}>
       <TextField
         id="search"
         type="text"
+        defaultValue={defaultValueSearch}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setQuery(e.target.value)
         }
