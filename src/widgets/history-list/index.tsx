@@ -17,7 +17,6 @@ export const HistoryList = () => {
   useEffect(() => {
     const storage = getHistoryinLocal(user);
     if (storage) {
-      console.log(JSON.parse(storage).history);
       dispatch(setHistory(JSON.parse(storage).history));
     }
   }, []);
