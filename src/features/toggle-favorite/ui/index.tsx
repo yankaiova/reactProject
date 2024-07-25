@@ -13,7 +13,7 @@ type Props = { id: number };
 
 export const Like = ({ id }: Props) => {
   const dispatch = useDispatch();
-  const { user } = useContext(AuthContext);
+  const { user, isAuth } = useContext(AuthContext);
   const { addFavorite, removeFavorite, isInFavorite } = useFavorites({
     id,
     user,
@@ -28,11 +28,15 @@ export const Like = ({ id }: Props) => {
   }, []);
 
   return (
-    <LikeButton
-      isLike={isInFavorite}
-      likeClick={() => addFavorite()}
-      removeLikeClick={() => removeFavorite()}
-      key={id + "-like"}
-    />
+    <>
+      {isAuth && (
+        <LikeButton
+          isLike={isInFavorite}
+          likeClick={() => addFavorite()}
+          removeLikeClick={() => removeFavorite()}
+          key={id + "-like"}
+        />
+      )}
+    </>
   );
 };
