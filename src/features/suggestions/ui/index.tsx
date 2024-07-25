@@ -1,11 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { productApi } from "../../../entities/product/api/slice";
+import { productApi } from "../../../entities/product";
 import { Product } from "../../../shared/model/types";
 import { Button } from "@mui/material";
-import { useHistory } from "../../../entities/history/lib/useHistory";
-import { useContext } from "react";
-import { AuthContext } from "../../../shared/context";
 
 type Props = {
   isOpen: boolean;
@@ -13,18 +10,15 @@ type Props = {
 };
 
 export const Suggestions = ({ isOpen, value }: Props) => {
-  const { user } = useContext(AuthContext);
   const { useGetProductByNameQuery } = productApi;
   const { data, isLoading } = useGetProductByNameQuery(value);
   const navigate = useNavigate();
-  const { setCurrentSearchValue } = useHistory(user);
 
   if (isLoading) return <div>Loading...</div>;
   if (!data) return;
 
-  const redirectOnSearch = (query: string) => {
-    setCurrentSearchValue(query);
-    navigate(`/search?search=${query}`);
+  const redirectOnSearch = (query: number) => {
+    navigate(`/${query}`);
   };
 
   return (
@@ -37,10 +31,7 @@ export const Suggestions = ({ isOpen, value }: Props) => {
           }}
         >
           {data.slice(0, 5).map((item: Product) => (
-            <Button
-              onClick={() => redirectOnSearch(item.title)}
-              key={item.title}
-            >
+            <Button onClick={() => redirectOnSearch(item.id)} key={item.title}>
               {item.title}
             </Button>
           ))}

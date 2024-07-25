@@ -1,11 +1,13 @@
 import { useContext, useEffect } from "react";
-import { useHistory } from "../../entities/history/lib/useHistory";
+import {
+  useHistory,
+  getHistoryinLocal,
+  setHistory,
+} from "../../entities/history";
 import { AuthContext } from "../../shared/context";
 import { ClearButton } from "../../features/clear-history";
 import { Button } from "@mui/material";
-import { getHistoryinLocal } from "../../entities/history/lib/utils";
 import { useDispatch } from "react-redux";
-import { setHistory } from "../../entities/history/model/slice";
 import { Link } from "react-router-dom";
 
 export const HistoryList = () => {

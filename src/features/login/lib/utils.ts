@@ -1,8 +1,7 @@
 export const getUserByEmail = (email: string) => {
-  const dataAboutUser = localStorage.getItem(email);
-  return dataAboutUser;
+  return localStorage.getItem(email);
 };
 
-export const setUser = (email: string) => {
+export const setUserInLocal = (email: string) => {
   localStorage.setItem("user", email);
 };

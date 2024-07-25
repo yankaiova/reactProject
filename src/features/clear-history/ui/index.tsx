@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
-import { useHistory } from "../../../entities/history/lib/useHistory";
+import { useHistory } from "../../../entities/history";
 import { Button } from "@mui/material";
 
 export const ClearButton = () => {

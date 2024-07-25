@@ -1,11 +1,13 @@
-import { FavoriteItem } from "../../../entities/favorite/ui";
 import { Like } from "../../../features/toggle-favorite";
 import { useDispatch, useSelector } from "react-redux";
-import { setFavorites } from "../../../entities/favorite/model/slice";
 import { useContext, useEffect } from "react";
-import { getFavoritesinLocal } from "../../../entities/favorite/lib/utils";
 import { AuthContext } from "../../../shared/context";
-import { getFavoriteProducts } from "../../../entities/favorite/model/selectors";
+import {
+  getFavoriteProducts,
+  getFavoritesinLocal,
+  FavoriteItem,
+  setFavorites,
+} from "../../../entities/favorite";
 
 export const FavoiteList = () => {
   const { user } = useContext(AuthContext);

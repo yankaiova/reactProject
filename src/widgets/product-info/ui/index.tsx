@@ -1,4 +1,4 @@
-import { productApi } from "../../../entities/product/api/slice";
+import { productApi } from "../../../entities/product";
 import {
   Card,
   CardContent,

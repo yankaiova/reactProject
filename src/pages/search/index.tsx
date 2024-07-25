@@ -1,7 +1,6 @@
-import { productApi } from "../../entities/product/api/slice";
 import { useSearchParams } from "react-router-dom";
 import { Product } from "../../shared/model/types";
-import { ProductItem } from "../../entities/product";
+import { ProductItem, productApi } from "../../entities/product";
 import { Like } from "../../features/toggle-favorite";
 
 const SearchPage = () => {

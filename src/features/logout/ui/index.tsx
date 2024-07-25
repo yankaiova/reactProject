@@ -4,11 +4,12 @@ import { AuthContext } from "../../../shared/context";
 import { removeUser } from "../lib/utils";
 
 export const Logout = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth, setUser } = useContext(AuthContext);
 
   function signOut() {
     setAuth();
     removeUser();
+    setUser(null);
   }
 
   return (
