@@ -4,7 +4,7 @@ import { productApi } from "../../../entities/product/api/slice";
 import { Product } from "../../../shared/model/types";
 import { Button } from "@mui/material";
 import { useHistory } from "../../../entities/history/lib/useHistory";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
 
 type Props = {
@@ -17,14 +17,15 @@ export const Suggestions = ({ isOpen, value }: Props) => {
   const { useGetProductByNameQuery } = productApi;
   const { data, isLoading } = useGetProductByNameQuery(value);
   const navigate = useNavigate();
-  const { setCurrentSearchValue, currentSearchValue } = useHistory(user);
+  const { setCurrentSearchValue } = useHistory(user);
 
   if (isLoading) return <div>Loading...</div>;
   if (!data) return;
 
-  useEffect(() => {
-    navigate(`/search?search=${currentSearchValue}`);
-  }, [currentSearchValue]);
+  const redirectOnSearch = (query: string) => {
+    setCurrentSearchValue(query);
+    navigate(`/search?search=${query}`);
+  };
 
   return (
     <>
@@ -37,7 +38,7 @@ export const Suggestions = ({ isOpen, value }: Props) => {
         >
           {data.slice(0, 5).map((item: Product) => (
             <Button
-              onClick={() => setCurrentSearchValue(item.title)}
+              onClick={() => redirectOnSearch(item.title)}
               key={item.title}
             >
               {item.title}
