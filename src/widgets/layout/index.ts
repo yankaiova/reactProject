@@ -1,1 +1,1 @@
-export { Layout } from "./ui/index";
+export { Layout } from "./ui";

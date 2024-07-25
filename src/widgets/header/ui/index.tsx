@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
-import { SearchForm } from "../../../features/search/ui";
+import { SearchForm } from "../../search";
 import { Logout } from "../../../features/logout";
 
 export const Header = () => {
@@ -12,7 +12,6 @@ export const Header = () => {
       style={{
         width: "100vw",
         display: "flex",
-        alignItems: "center",
       }}
     >
       <Link to="/">logo</Link>
