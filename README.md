@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# ПРИЛОЖЕНИЕ КОЛЛЕКЦИЯ ПРОДУКТОВ
+# Основной функционал:
+- Регистрация и авторизация пользователей 
+- Главная страница со списком готовых продуктов
+- Просмотр детальной информации о продукте
+- Поиск по названию продукта и выпадающие подсказки
+- История поиска для авторизированных пользователей
+- Избранные продукты для  для авторизированных пользователей
+# Реализация требований:
+1 уровень (обязательный - необходимый минимум):
+- [x] Реализованы Требования к функциональности
+- [x] Для хранения учетных записей пользователей, их Избранного и Истории поиска, использую LocalStorage
+- [x] Использую функциональные компоненты c хуками
+- [x] Есть разделение на умные и глупые компоненты 
+- [x] Есть рендеринг списков
+- [x] Реализованы формы 
+- [x] Есть применение Контекст API 
+- [x] Есть применение предохранителя
+- [x] Есть кастомный хук 
+- [x] Пара компонентов использует PropTypes 
+- [x] Использую useDebounce
+- [x] Есть применение lazy + Suspense
+- [x] Использую Modern Redux with Redux Toolkit (store)
+- [x] Использую слайсы 
+- [x] Есть кастомная мидлвара
+- [x] Используется RTK Query
+- [x] Используется Transforming Responses
+2 уровень (необязательный):
+- [x] Использование TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ # Дополнительная информация
+ Использован Feature-Sliced Design подход
+ Использованы дополнительные библиотеки (react-hool-form, yup, Material UI)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+  # Запуск приложения осуществляется с помощью команды npm instal && npm run dev
