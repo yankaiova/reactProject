@@ -40,6 +40,7 @@ export const SearchForm = () => {
   }
 
   const onFocus = () => setIsOpenSuggestions(true);
+
   const onBlur = () => setTimeout(() => setIsOpenSuggestions(false), 200);
 
   return (
@@ -58,6 +59,7 @@ export const SearchForm = () => {
             onBlur={onBlur}
             variant="outlined"
             size="small"
+            autoComplete="off"
           />
           <Suggestions isOpen={isOpenSuggestions} value={debounceValue} />
         </div>
