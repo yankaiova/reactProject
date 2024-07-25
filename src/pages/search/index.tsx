@@ -20,7 +20,7 @@ const SearchPage = () => {
         <ProductItem
           key={product.id}
           product={product}
-          actions={<Like product={product} />}
+          actions={<Like id={product.id} />}
         />
       ))}
     </div>

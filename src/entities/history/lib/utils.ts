@@ -39,3 +39,9 @@ export const removeFromHistoryInLocal = (
     clearHistoryInLocal();
   }
 };
+export const getCurrentSearch = (user: string | null) => {
+  return getDataLocalStorage(`currentSearch${user}`);
+};
+export const setCurrentSearchInLocal = (user: string | null, word: string) => {
+  setDatalocalStorage(`currentSearch${user}`, word);
+};

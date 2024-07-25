@@ -1,18 +1,32 @@
 import { FavoriteItem } from "../../../entities/favorite/ui";
-import { Product } from "../../../shared/model/types";
 import { Like } from "../../../features/toggle-favorite";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavorites } from "../../../entities/favorite/model/slice";
+import { useContext, useEffect } from "react";
+import { getFavoritesinLocal } from "../../../entities/favorite/lib/utils";
+import { AuthContext } from "../../../shared/context";
 import { getFavoriteProducts } from "../../../entities/favorite/model/selectors";
 
 export const FavoiteList = () => {
+  const { user } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const favoriteProducts = useSelector(getFavoriteProducts);
+
+  useEffect(() => {
+    const storage = getFavoritesinLocal(user);
+    if (storage) {
+      console.log(JSON.parse(storage).favorites);
+      dispatch(setFavorites(JSON.parse(storage).favorites));
+    }
+  }, []);
+
   return (
     <div>
-      {favoriteProducts.map((item: Product) => (
+      {favoriteProducts.map((item: number) => (
         <FavoriteItem
-          product={item}
-          key={item.id + "fav"}
-          actions={<Like product={item} />}
+          id={item}
+          key={item + "fav"}
+          actions={<Like id={item} />}
         />
       ))}
     </div>

@@ -1,18 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
 import { useHistory } from "../../../entities/history/lib/useHistory";
-import { useState } from "react";
 import { Button, TextField } from "@mui/material";
-import { getCurrentSearch, setCurrentSearch } from "../lib/utils";
 
 export const SearchForm = () => {
   const navigate = useNavigate();
   const { isAuth, user } = useContext(AuthContext);
-  const [query, setQuery] = useState<string>("");
-
-  const defaultValueSearch = getCurrentSearch(user) ?? "";
-  const { addHistory } = useHistory(user);
+  const { addHistory, setCurrentSearchValue, currentSearchValue } =
+    useHistory(user);
 
   const onSubmit = (
     e:
@@ -20,13 +16,13 @@ export const SearchForm = () => {
       | React.KeyboardEvent<HTMLInputElement>
   ) => {
     e.preventDefault();
-    if (!query.trim()) {
+    if (!currentSearchValue.trim()) {
       return navigate("/");
     }
     if (isAuth) {
-      addHistory(query);
+      addHistory(currentSearchValue);
     }
-    navigate(`/search?search=${query}`);
+    navigate(`/search?search=${currentSearchValue}`);
   };
 
   function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -35,18 +31,14 @@ export const SearchForm = () => {
     }
   }
 
-  useEffect(() => {
-    setCurrentSearch(user, query);
-  }, [query]);
-
   return (
     <form style={{ display: "flex", alignItems: "center" }}>
       <TextField
         id="search"
         type="text"
-        defaultValue={defaultValueSearch}
+        value={currentSearchValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setQuery(e.target.value)
+          setCurrentSearchValue(e.target.value)
         }
         onKeyDown={handleKeyPress}
         variant="outlined"

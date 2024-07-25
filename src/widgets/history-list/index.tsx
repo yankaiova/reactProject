@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 export const HistoryList = () => {
   const { user } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const { historyList, removeItemHistory } = useHistory(user);
+  const { historyList, removeItemHistory, setCurrentSearchValue } =
+    useHistory(user);
 
   useEffect(() => {
     const storage = getHistoryinLocal(user);
     if (storage) {
-      console.log(JSON.parse(storage).history);
       dispatch(setHistory(JSON.parse(storage).history));
     }
   }, []);
@@ -28,7 +28,10 @@ export const HistoryList = () => {
           <div key={item + index}>
             <span>{item}</span>
             <Button onClick={() => removeItemHistory(item)}>Удалить</Button>
-            <Link to={`/search?search=${item}`}>
+            <Link
+              to={`/search?search=${item}`}
+              onClick={() => setCurrentSearchValue(item)}
+            >
               <Button size="small">Подробнее</Button>
             </Link>
           </div>
