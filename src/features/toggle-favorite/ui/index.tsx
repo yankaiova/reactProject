@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { LikeButton } from "../../../shared/ui/likeButton";
 import {
   useFavorites,
-  getFavoritesinLocal,
+  getFavoritesbyEmail,
   setFavorites,
 } from "../../../entities/favorite";
 import { AuthContext } from "../../../shared/context";
@@ -20,9 +20,8 @@ export const Like = ({ id }: Props) => {
   });
 
   useEffect(() => {
-    const storage = getFavoritesinLocal(user);
+    const storage = getFavoritesbyEmail(user);
     if (storage) {
-      console.log(JSON.parse(storage).favorites);
       dispatch(setFavorites(JSON.parse(storage).favorites));
     }
   }, []);

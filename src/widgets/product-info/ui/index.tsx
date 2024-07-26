@@ -19,7 +19,7 @@ export const ProductInfo = () => {
   if (!data) return <div>Пусто</div>;
 
   return (
-    <Card sx={{ maxWidth: 345 }} key={id + "-info"}>
+    <Card sx={{ maxWidth: 345, margin: "20px" }} key={id + "-info"}>
       <CardMedia sx={{ height: 140 }} image={data.thumbnail} />
       <CardContent>
         <Rating name="read-only" value={data.rating} readOnly />

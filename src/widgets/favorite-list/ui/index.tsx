@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../shared/context";
 import {
   getFavoriteProducts,
-  getFavoritesinLocal,
+  getFavoritesbyEmail,
   FavoriteItem,
   setFavorites,
 } from "../../../entities/favorite";
@@ -15,9 +15,8 @@ export const FavoiteList = () => {
   const favoriteProducts = useSelector(getFavoriteProducts);
 
   useEffect(() => {
-    const storage = getFavoritesinLocal(user);
+    const storage = getFavoritesbyEmail(user);
     if (storage) {
-      console.log(JSON.parse(storage).favorites);
       dispatch(setFavorites(JSON.parse(storage).favorites));
     }
   }, []);

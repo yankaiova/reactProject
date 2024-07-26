@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../shared/context";
 import { useHistory } from "../../../entities/history/lib/useHistory";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { Suggestions } from "../../../features/suggestions";
 import { useDebounce } from "../../../shared/lib/useDebounce";
+import SearchIcon from "@mui/icons-material/Search";
 
 export const SearchForm = () => {
   const navigate = useNavigate();
@@ -16,26 +17,26 @@ export const SearchForm = () => {
 
   const [isOpenSuggestions, setIsOpenSuggestions] = useState<boolean>(false);
 
-  const onSubmit = (
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    e.preventDefault();
+  const onSubmit = (search: string) => {
     setIsOpenSuggestions(false);
-    if (!currentSearchValue.trim()) {
+    if (!search.trim()) {
       return navigate("/");
     }
     if (isAuth) {
       addHistory(currentSearchValue);
     }
-    navigate(`/search?search=${currentSearchValue}`);
+    navigate(`/search?search=${search}`);
   };
 
-  function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "enter") {
-      setIsOpenSuggestions(false);
-      onSubmit(e);
+  function handleClick(e: React.MouseEvent) {
+    e.preventDefault();
+    onSubmit(currentSearchValue);
+  }
+
+  function handleKeyPress(e: React.KeyboardEvent, value: string) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onSubmit(value);
     }
   }
 
@@ -45,8 +46,8 @@ export const SearchForm = () => {
 
   return (
     <div>
-      <form style={{ display: "flex", alignItems: "start" }}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+      <form style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ position: "relative" }}>
           <TextField
             id="search"
             type="text"
@@ -54,7 +55,7 @@ export const SearchForm = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCurrentSearchValue(e.target.value)
             }
-            onKeyDown={handleKeyPress}
+            onKeyDown={(e) => handleKeyPress(e, currentSearchValue)}
             onFocus={onFocus}
             onBlur={onBlur}
             variant="outlined"
@@ -63,9 +64,12 @@ export const SearchForm = () => {
           />
           <Suggestions isOpen={isOpenSuggestions} value={debounceValue} />
         </div>
-        <Button type="submit" onClick={(e) => onSubmit(e)}>
-          Найти
-        </Button>
+        <SearchIcon
+          type="submit"
+          onClick={handleClick}
+          color="primary"
+          style={{ cursor: "pointer" }}
+        />
       </form>
     </div>
   );

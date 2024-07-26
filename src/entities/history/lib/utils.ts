@@ -3,45 +3,45 @@ import {
   setDatalocalStorage,
 } from "../../../shared/lib/utils";
 
-export const clearHistoryInLocal = () => {
+export const saveClearHistory = () => {
   localStorage.removeItem(`history${getDataLocalStorage("user")}`);
 };
-export const getHistoryinLocal = (email: string | null) => {
+export const getHistorybyEmail = (email: string | null) => {
   return getDataLocalStorage(`history${email}`);
 };
 
-export const createHistoryInLocal = (email: string | null, word: string) => {
+export const createHistory = (email: string | null, word: string) => {
   const history = { history: [word] };
   setDatalocalStorage(`history${email}`, JSON.stringify(history));
 };
 
-export const addToHistoryInLocal = (email: string | null, word: string) => {
-  const storage = getHistoryinLocal(email);
+export const saveHistoryPush = (email: string | null, word: string) => {
+  const storage = getHistorybyEmail(email);
   if (storage && JSON.parse(storage).history.length > 0) {
     const history = JSON.parse(storage);
     history.history = history.history.filter((item: string) => item !== word);
     history.history.push(word);
     setDatalocalStorage(`history${email}`, JSON.stringify(history));
   } else {
-    createHistoryInLocal(email, word);
+    createHistory(email, word);
   }
 };
-export const removeFromHistoryInLocal = (
-  email: string | null,
-  word: string
-) => {
-  const storage = getHistoryinLocal(email);
+export const saveHistoryRemove = (email: string | null, word: string) => {
+  const storage = getHistorybyEmail(email);
   if (storage && JSON.parse(storage).history.length > 0) {
     const history = JSON.parse(storage);
     history.history = history.history.filter((item: string) => item !== word);
     setDatalocalStorage(`history${email}`, JSON.stringify(history));
   } else {
-    clearHistoryInLocal();
+    saveClearHistory();
   }
 };
 export const getCurrentSearch = (user: string | null) => {
   return getDataLocalStorage(`currentSearch${user}`);
 };
-export const setCurrentSearchInLocal = (user: string | null, word: string) => {
+export const saveCurrentSearch = (user: string | null, word: string) => {
   setDatalocalStorage(`currentSearch${user}`, word);
+};
+export const getCurrentUser = () => {
+  return getDataLocalStorage(`user`);
 };

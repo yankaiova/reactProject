@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../shared/context";
 import { removeUser } from "../lib/utils";
+import { Button } from "@mui/material";
 
 export const Logout = () => {
   const { setAuth, setUser } = useContext(AuthContext);
@@ -14,7 +15,8 @@ export const Logout = () => {
 
   return (
     <Link to="/" onClick={signOut}>
-      Выйти
+      {" "}
+      <Button>Выйти </Button>
     </Link>
   );
 };

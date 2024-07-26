@@ -26,8 +26,14 @@ export const Suggestions = ({ isOpen, value }: Props) => {
       {isOpen && (
         <div
           style={{
+            position: "absolute",
+            zIndex: "100",
+            top: "40px",
             display: "flex",
             flexDirection: "column",
+            background: "lightblue",
+            color: "white",
+            padding: "0",
           }}
         >
           {data.slice(0, 5).map((item: Product) => (

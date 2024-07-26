@@ -1,9 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import {
-  addToHistoryInLocal,
-  clearHistoryInLocal,
-  removeFromHistoryInLocal,
-  setCurrentSearchInLocal,
+  saveHistoryPush,
+  saveHistoryRemove,
+  saveCurrentSearch,
+  getCurrentUser,
+  saveClearHistory,
 } from "../lib/utils";
 import {
   clearHistory,
@@ -11,31 +12,30 @@ import {
   removeFromHistory,
   setCurrentSearch,
 } from "./slice";
-import { getDataLocalStorage } from "../../../shared/lib/utils";
 
 export const listenerMiddlewareHistory = createListenerMiddleware();
 
 listenerMiddlewareHistory.startListening({
   actionCreator: clearHistory,
   effect: async () => {
-    clearHistoryInLocal();
+    saveClearHistory();
   },
 });
 listenerMiddlewareHistory.startListening({
   actionCreator: addToHistory,
   effect: async (action) => {
-    addToHistoryInLocal(getDataLocalStorage("user"), action.payload);
+    saveHistoryPush(getCurrentUser(), action.payload);
   },
 });
 listenerMiddlewareHistory.startListening({
   actionCreator: removeFromHistory,
   effect: async (action) => {
-    removeFromHistoryInLocal(getDataLocalStorage("user"), action.payload);
+    saveHistoryRemove(getCurrentUser(), action.payload);
   },
 });
 listenerMiddlewareHistory.startListening({
   actionCreator: setCurrentSearch,
   effect: async (action) => {
-    setCurrentSearchInLocal(getDataLocalStorage("user"), action.payload);
+    saveCurrentSearch(getCurrentUser(), action.payload);
   },
 });

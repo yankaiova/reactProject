@@ -44,11 +44,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/search",
-        element: (
-          <PrivateRoute>
-            <SearchPage />
-          </PrivateRoute>
-        ),
+        element: <SearchPage />,
       },
       {
         path: "/signin",

@@ -6,7 +6,6 @@ export const ProductList = () => {
   const { useGetProductsAllQuery } = productApi;
   const { data, isLoading } = useGetProductsAllQuery();
 
-
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>Пусто</div>;
   return (

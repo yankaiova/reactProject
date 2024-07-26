@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import {
   useHistory,
-  getHistoryinLocal,
+  getHistorybyEmail,
   setHistory,
 } from "../../entities/history";
 import { AuthContext } from "../../shared/context";
@@ -9,6 +9,7 @@ import { ClearButton } from "../../features/clear-history";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const HistoryList = () => {
   const { user } = useContext(AuthContext);
@@ -17,7 +18,7 @@ export const HistoryList = () => {
     useHistory(user);
 
   useEffect(() => {
-    const storage = getHistoryinLocal(user);
+    const storage = getHistorybyEmail(user);
     if (storage) {
       dispatch(setHistory(JSON.parse(storage).history));
     }
@@ -27,15 +28,31 @@ export const HistoryList = () => {
     <div>
       <div>
         {historyList.map((item: string, index: number) => (
-          <div key={item + index}>
-            <span>{item}</span>
-            <Button onClick={() => removeItemHistory(item)}>Удалить</Button>
-            <Link
-              to={`/search?search=${item}`}
-              onClick={() => setCurrentSearchValue(item)}
-            >
-              <Button size="small">Подробнее</Button>
-            </Link>
+          <div
+            key={item + index}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button>
+              {" "}
+              <Link
+                to={`/search?search=${item}`}
+                onClick={() => setCurrentSearchValue(item)}
+              >
+                {item}
+              </Link>
+            </Button>
+
+            <CloseIcon
+              sx={{ cursor: "pointer" }}
+              fontSize="small"
+              color="primary"
+              style={{ marginLeft: "10px" }}
+              onClick={() => removeItemHistory(item)}
+            />
           </div>
         ))}
       </div>
