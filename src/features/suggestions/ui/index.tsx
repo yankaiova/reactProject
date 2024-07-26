@@ -11,10 +11,8 @@ type Props = {
 
 export const Suggestions = ({ isOpen, value }: Props) => {
   const { useGetProductByNameQuery } = productApi;
-  const { data, isLoading } = useGetProductByNameQuery(value);
+  const { data } = useGetProductByNameQuery(value);
   const navigate = useNavigate();
-
-  if (isLoading) return <div>Loading...</div>;
   if (!data) return;
 
   const redirectOnSearch = (query: number) => {
