@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import { ProductItem, productApi } from "../../../entities/product";
 import { Like } from "../../../features/toggle-favorite";
 import { Product } from "../../../shared/model/types";
@@ -9,14 +10,16 @@ export const ProductList = () => {
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>Пусто</div>;
   return (
-    <div>
+    <Grid container columns={{ xs: 1, sm: 2, md: 3 }}>
       {data.map((item: Product) => (
-        <ProductItem
-          product={item}
-          key={item.id}
-          actions={<Like id={item.id} />}
-        />
+        <Grid item key={item.id + "gr"} xs={1}>
+          <ProductItem
+            product={item}
+            key={item.id}
+            actions={<Like id={item.id} />}
+          />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };

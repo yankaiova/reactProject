@@ -12,8 +12,9 @@ export const Header = () => {
     <div
       style={{
         display: "flex",
+        justifyContent: "center",
         alignItems: "center",
-        columnGap: "20px",
+        columnGap: "1%",
         border: "1px solid darkblue",
         padding: "20px",
       }}

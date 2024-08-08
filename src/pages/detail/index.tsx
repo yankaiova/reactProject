@@ -1,5 +1,10 @@
+import { Container } from "@mui/material";
 import { ProductInfo } from "../../widgets/product-info";
 
 export const DetailPage = () => {
-  return <ProductInfo />;
+  return (
+    <Container>
+      <ProductInfo />
+    </Container>
+  );
 };

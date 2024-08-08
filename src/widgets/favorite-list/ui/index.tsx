@@ -8,6 +8,7 @@ import {
   FavoriteItem,
   setFavorites,
 } from "../../../entities/favorite";
+import { Grid } from "@mui/material";
 
 export const FavoiteList = () => {
   const { user } = useContext(AuthContext);
@@ -22,14 +23,16 @@ export const FavoiteList = () => {
   }, []);
 
   return (
-    <div>
+    <Grid container columns={{ xs: 1, sm: 2, md: 3 }}>
       {favoriteProducts.map((item: number) => (
-        <FavoriteItem
-          id={item}
-          key={item + "fav"}
-          actions={<Like id={item} />}
-        />
+        <Grid item key={item + "gr"} xs={1}>
+          <FavoriteItem
+            id={item}
+            key={item + "fav"}
+            actions={<Like id={item} />}
+          />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };

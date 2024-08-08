@@ -1,6 +1,11 @@
 import { FavoiteList } from "../../widgets/favorite-list/ui";
+import { Container } from "@mui/material";
 
 const FavoritesPage = () => {
-  return <FavoiteList />;
+  return (
+    <Container>
+      <FavoiteList />
+    </Container>
+  );
 };
 export default FavoritesPage;
